@@ -32,7 +32,8 @@ const NIVELES = {
         color: ButtonStyle.Primary,
         panel:
             '# 📊 Plantilla AGGR · Nivel VIP 2\n\n' +
-            '__¿Cómo lo obtengo?__ Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
+            '__¿Cómo lo obtengo?__\n\n' +
+            'Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
             '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
             '👇 Pulsa el botón para solicitarla.',
         botonLabel: '🔥 Solicitar mapa de calor',
@@ -49,7 +50,8 @@ const NIVELES = {
         color: ButtonStyle.Success,
         panel:
             '# 📈 Plantilla AGGR · Nivel VIP 3\n\n' +
-            '__¿Cómo lo obtengo?__ Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
+            '__¿Cómo lo obtengo?__\n\n' +
+            'Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
             '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
             '👇 Pulsa el botón para solicitarla.',
         botonLabel: '📊 Solicitar indicadores',
@@ -194,7 +196,7 @@ async function publicarPanel(nivel) {
 
         const mios = mensajes.filter((m) => m.author.id === client.user.id);
         for (const m of mios.values()) {
-            await m.delete().catch(() => {});
+            await m.delete().catch(() => { });
         }
 
         const boton = new ButtonBuilder()
@@ -432,7 +434,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.reply({
                 content: '❌ Ha ocurrido un error inesperado. Inténtalo de nuevo.',
                 ephemeral: true,
-            }).catch(() => {});
+            }).catch(() => { });
         }
     }
 });
