@@ -32,10 +32,10 @@ const NIVELES = {
         color: ButtonStyle.Primary,
         panel:
             '# 📊 Plantilla AGGR · Nivel VIP 2\n\n' +
-            '**¿Cómo lo obtengo?** Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
+            '__¿Cómo lo obtengo?__ Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
             '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
             '👇 Pulsa el botón para solicitarla.',
-        botonLabel: '📥 SOLICITAR PLANTILLA VIP 2',
+        botonLabel: '🔥 Solicitar mapa de calor',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
             'Acabas de solicitar tu plantilla del **AGGR (VIP 2)**. En breve será procesada tu solicitud ' +
@@ -49,10 +49,10 @@ const NIVELES = {
         color: ButtonStyle.Success,
         panel:
             '# 📈 Plantilla AGGR · Nivel VIP 3\n\n' +
-            '**¿Cómo lo obtengo?** Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
+            '__¿Cómo lo obtengo?__ Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
             '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
             '👇 Pulsa el botón para solicitarla.',
-        botonLabel: '📥 SOLICITAR PLANTILLA VIP 3',
+        botonLabel: '📊 Solicitar indicadores',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
             'Acabas de solicitar tu plantilla del **AGGR (VIP 3)**. En breve será procesada tu solicitud ' +
@@ -194,7 +194,7 @@ async function publicarPanel(nivel) {
 
         const mios = mensajes.filter((m) => m.author.id === client.user.id);
         for (const m of mios.values()) {
-            await m.delete().catch(() => { });
+            await m.delete().catch(() => {});
         }
 
         const boton = new ButtonBuilder()
@@ -432,7 +432,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.reply({
                 content: '❌ Ha ocurrido un error inesperado. Inténtalo de nuevo.',
                 ephemeral: true,
-            }).catch(() => { });
+            }).catch(() => {});
         }
     }
 });
