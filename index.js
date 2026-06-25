@@ -27,37 +27,31 @@ const FALLOS_PATH = path.join(__dirname, 'solicitudes_fallidas.jsonl');
 const NIVELES = {
     vip2: {
         clave: 'vip2',
-        nombre: 'AGGR VIP 2',
+        nombre: 'VIP 2',
         canalId: process.env.DISCORD_CHANNEL_VIP2,
         color: ButtonStyle.Primary,
         panel:
-            '# 📊 Plantilla AGGR · Nivel VIP 2\n\n' +
             '__¿Cómo lo obtengo?__\n\n' +
-            'Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
-            '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
-            '👇 Pulsa el botón para solicitarla.',
-        botonLabel: '🔥 Solicitar mapa de calor',
+            '👇 Pulsa el botón 👇 y te envío el acceso + instrucciones.\n\n',
+        botonLabel: 'Solicitar mapa de calor',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
-            'Acabas de solicitar tu plantilla del **AGGR (VIP 2)**. En breve será procesada tu solicitud ' +
+            'Acabas de solicitar tu plantilla **(VIP 2)**. En breve será procesada tu solicitud ' +
             'y la recibirás por Discord.\n\n' +
             '📄 El archivo que se te enviará es **individual para cada usuario** y está **prohibida su transferencia**.',
     },
     vip3: {
         clave: 'vip3',
-        nombre: 'AGGR VIP 3',
+        nombre: ' VIP 3',
         canalId: process.env.DISCORD_CHANNEL_VIP3,
         color: ButtonStyle.Success,
         panel:
-            '# 📈 Plantilla AGGR · Nivel VIP 3\n\n' +
             '__¿Cómo lo obtengo?__\n\n' +
-            'Fácil. Rellena este formulario y te envío el acceso + instrucciones.\n\n' +
-            '⚠️ El archivo es **individual para cada usuario** y está **prohibida su transferencia**.\n\n' +
-            '👇 Pulsa el botón para solicitarla.',
-        botonLabel: '📊 Solicitar indicadores',
+            '👇 Pulsa el botón 👇 y te envío el acceso + instrucciones.\n\n',
+        botonLabel: 'Solicitar indicadores',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
-            'Acabas de solicitar tu plantilla del **AGGR (VIP 3)**. En breve será procesada tu solicitud ' +
+            'Acabas de solicitar tu plantilla **(VIP 3)**. En breve será procesada tu solicitud ' +
             'y la recibirás por Discord.\n\n' +
             '📄 El archivo que se te enviará es **individual para cada usuario** y está **prohibida su transferencia**.',
     },
