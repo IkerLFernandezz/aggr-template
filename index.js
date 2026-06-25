@@ -22,7 +22,7 @@ const COOLDOWN_MS = 3 * 60 * 1000;      // 1 solicitud cada 3 min por usuario y 
 const REGISTRO_PATH = path.join(__dirname, 'solicitudes.jsonl');
 const FALLOS_PATH = path.join(__dirname, 'solicitudes_fallidas.jsonl');
 
-// Definición de los dos niveles. Cada uno tiene su canal, su botón y su mensaje.
+// Definición de los niveles. Cada uno tiene su canal, su botón y su mensaje.
 // Los IDs de canal se leen del .env (tú los configuras).
 const NIVELES = {
     vip2: {
@@ -54,6 +54,23 @@ const NIVELES = {
             'Acabas de solicitar tu plantilla **(VIP 3)**. En breve será procesada tu solicitud ' +
             'y la recibirás por Discord.\n\n' +
             '📄 El archivo que se te enviará es **individual para cada usuario** y está **prohibida su transferencia**.',
+    },
+    // Nuevo: solicitud de ACCESO al VIP 3 (no es una plantilla)
+    accesovip3: {
+        clave: 'accesovip3',
+        nombre: 'Acceso VIP 3',
+        canalId: process.env.DISCORD_CHANNEL_ACCESO_VIP3,
+        color: ButtonStyle.Success,
+        panel:
+            '# 🐋 ¿Tienes más de 30.000 USDT en Bitunix?\n\n' +
+            'Eso significa que eres una **Ballena** y puedes entrar en el **VIP 3**.\n\n' +
+            'Solicita aquí abajo 👇 entrar al **VIP 3** y tener acceso a **Beneficios Secretos**.',
+        botonLabel: 'Solicitar acceso al VIP 3',
+        confirmacion:
+            '🎉 **¡SOLICITUD ENVIADA!**\n\n' +
+            'Acabas de solicitar el **acceso al VIP 3**. En breve revisaremos tu solicitud ' +
+            'y te daremos acceso a los **Beneficios Secretos**.\n\n' +
+            '📨 Nos pondremos en contacto contigo por Discord.',
     },
 };
 
@@ -144,6 +161,10 @@ const commands = [
         .setName('plantilla_vip3')
         .setDescription('Solicita tu plantilla AGGR VIP 3')
         .toJSON(),
+    new SlashCommandBuilder()
+        .setName('acceso_vip3')
+        .setDescription('Solicita acceso al VIP 3')
+        .toJSON(),
 ];
 
 async function registerCommands() {
@@ -229,7 +250,7 @@ function construirModal(nivel) {
     const conf = NIVELES[nivel];
     const modal = new ModalBuilder()
         .setCustomId(`form_${conf.clave}`)
-        .setTitle(`Plantilla ${conf.nombre}`);
+        .setTitle(`Solicitud · ${conf.nombre}`);
 
     const uid = new TextInputBuilder()
         .setCustomId('uid')
@@ -247,12 +268,18 @@ function construirModal(nivel) {
     return modal;
 }
 
-// Devuelve la config de nivel a partir de un customId tipo "abrir_vip2" / "form_vip3"
+// Devuelve la config de nivel a partir de un customId tipo "abrir_vip2" / "form_accesovip3"
+// Importante: comprobar accesovip3 ANTES que vip3, porque "accesovip3" también termina en "vip3".
 function nivelDesdeCustomId(customId) {
+    if (customId.endsWith('accesovip3')) return NIVELES.accesovip3;
     if (customId.endsWith('vip2')) return NIVELES.vip2;
     if (customId.endsWith('vip3')) return NIVELES.vip3;
     return null;
 }
+
+// Conjuntos para identificar fácilmente los customId válidos
+const BOTONES_ABRIR = ['abrir_vip2', 'abrir_vip3', 'abrir_accesovip3'];
+const MODALES_FORM = ['form_vip2', 'form_vip3', 'form_accesovip3'];
 
 // ============================================================
 //  MANEJO DE INTERACCIONES
@@ -260,7 +287,7 @@ function nivelDesdeCustomId(customId) {
 client.on('interactionCreate', async (interaction) => {
     try {
         // --- Botones de panel: abrir formulario del nivel ---
-        if (interaction.isButton() && (interaction.customId === 'abrir_vip2' || interaction.customId === 'abrir_vip3')) {
+        if (interaction.isButton() && BOTONES_ABRIR.includes(interaction.customId)) {
             const conf = nivelDesdeCustomId(interaction.customId);
 
             // Restricción por canal
@@ -287,9 +314,12 @@ client.on('interactionCreate', async (interaction) => {
 
         // --- Comandos de respaldo ---
         if (interaction.isChatInputCommand() &&
-            (interaction.commandName === 'plantilla_vip2' || interaction.commandName === 'plantilla_vip3')) {
+            ['plantilla_vip2', 'plantilla_vip3', 'acceso_vip3'].includes(interaction.commandName)) {
 
-            const conf = interaction.commandName === 'plantilla_vip2' ? NIVELES.vip2 : NIVELES.vip3;
+            let conf;
+            if (interaction.commandName === 'plantilla_vip2') conf = NIVELES.vip2;
+            else if (interaction.commandName === 'plantilla_vip3') conf = NIVELES.vip3;
+            else conf = NIVELES.accesovip3;
 
             if (interaction.channelId !== conf.canalId) {
                 await interaction.reply({
@@ -313,7 +343,7 @@ client.on('interactionCreate', async (interaction) => {
         }
 
         // --- Envío del modal: validar UID y mostrar confirmación ---
-        if (interaction.isModalSubmit() && (interaction.customId === 'form_vip2' || interaction.customId === 'form_vip3')) {
+        if (interaction.isModalSubmit() && MODALES_FORM.includes(interaction.customId)) {
             const conf = nivelDesdeCustomId(interaction.customId);
 
             const uidRaw = interaction.fields.getTextInputValue('uid');
@@ -393,8 +423,8 @@ client.on('interactionCreate', async (interaction) => {
             guardarRegistro(REGISTRO_PATH, registro);
 
             const texto =
-                `📋 *NUEVA SOLICITUD DE PLANTILLA*\n\n` +
-                `🏷️ *Nivel:* ${escaparMarkdown(datos.nivelNombre)}\n` +
+                `📋 *NUEVA SOLICITUD*\n\n` +
+                `🏷️ *Tipo:* ${escaparMarkdown(datos.nivelNombre)}\n` +
                 `👤 *Discord:* ${escaparMarkdown(datos.discordUsername)} \\(ID: ${escaparMarkdown(datos.discordId)}\\)\n` +
                 `🆔 *UID Bitunix:* ${escaparMarkdown(datos.uid)}\n` +
                 `📅 *Fecha solicitud:* ${escaparMarkdown(datos.fecha)}`;
@@ -437,6 +467,7 @@ client.once('ready', async () => {
     console.log(`Bot conectado como ${client.user.tag}`);
     await publicarPanel('vip2');
     await publicarPanel('vip3');
+    await publicarPanel('accesovip3');
 });
 
 registerCommands().catch(console.error);
