@@ -62,8 +62,8 @@ const NIVELES = {
         canalId: process.env.DISCORD_CHANNEL_ACCESO_VIP3,
         color: ButtonStyle.Success,
         panel:
-            'Tienes más de 30.000 USDT en Bitunix? Eso significa que eres una **Ballena** y puedes entrar en el **VIP 3**.\n\n' +
-            'Solicita aquí abajo 👇 entrar al **VIP 3** y tener acceso a **Beneficios Secretos**.',
+            'Tienes más de 30.000 USDT en Bitunix? Eso significa que eres una Ballena y puedes entrar en el VIP 3.\n\n' +
+            'Solicita aquí abajo 👇 entrar al VIP 3 y tener acceso a Beneficios Secretos.',
         botonLabel: 'Solicitar Acceso al VIP 3',
         confirmacion:
             '🎉 **¡SOLICITUD ENVIADA!**\n\n' +
