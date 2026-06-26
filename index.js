@@ -33,7 +33,7 @@ const NIVELES = {
         panel:
             '__¿Cómo lo obtengo?__\n\n' +
             'Pulsa en el botón 👇 y te envío el acceso + instrucciones.\n\n',
-        botonLabel: 'Solicitar mapa de calor',
+        botonLabel: 'Solicitar Mapas de Calor',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
             'Acabas de solicitar tu plantilla **(VIP 2)**. En breve será procesada tu solicitud ' +
@@ -48,7 +48,7 @@ const NIVELES = {
         panel:
             '__¿Cómo lo obtengo?__\n\n' +
             'Pulsa en el botón 👇 y te envío el acceso + instrucciones.\n\n',
-        botonLabel: 'Solicitar indicadores',
+        botonLabel: 'Solicitar Indicadores',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
             'Acabas de solicitar tu plantilla **(VIP 3)**. En breve será procesada tu solicitud ' +
@@ -64,7 +64,7 @@ const NIVELES = {
         panel:
             'Tienes más de 30.000 USDT en Bitunix? Eso significa que eres una **Ballena** y puedes entrar en el **VIP 3**.\n\n' +
             'Solicita aquí abajo 👇 entrar al **VIP 3** y tener acceso a **Beneficios Secretos**.',
-        botonLabel: 'Solicitar acceso al VIP 3',
+        botonLabel: 'Solicitar Acceso al VIP 3',
         confirmacion:
             '🎉 **¡SOLICITUD ENVIADA!**\n\n' +
             'Acabas de solicitar el **acceso al VIP 3**. En breve revisaremos tu solicitud ' +
