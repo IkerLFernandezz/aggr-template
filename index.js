@@ -32,7 +32,7 @@ const NIVELES = {
         color: ButtonStyle.Primary,
         panel:
             '__¿Cómo lo obtengo?__\n\n' +
-            '👇 Pulsa el botón 👇 y te envío el acceso + instrucciones.\n\n',
+            'Pulsa en el botón 👇 y te envío el acceso + instrucciones.\n\n',
         botonLabel: 'Solicitar mapa de calor',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
@@ -47,7 +47,7 @@ const NIVELES = {
         color: ButtonStyle.Success,
         panel:
             '__¿Cómo lo obtengo?__\n\n' +
-            '👇 Pulsa el botón 👇 y te envío el acceso + instrucciones.\n\n',
+            'Pulsa en el botón 👇 y te envío el acceso + instrucciones.\n\n',
         botonLabel: 'Solicitar indicadores',
         confirmacion:
             '🎉 **¡ENHORABUENA!**\n\n' +
@@ -62,8 +62,7 @@ const NIVELES = {
         canalId: process.env.DISCORD_CHANNEL_ACCESO_VIP3,
         color: ButtonStyle.Success,
         panel:
-            '# 🐋 ¿Tienes más de 30.000 USDT en Bitunix?\n\n' +
-            'Eso significa que eres una **Ballena** y puedes entrar en el **VIP 3**.\n\n' +
+            'Tienes más de 30.000 USDT en Bitunix? Eso significa que eres una **Ballena** y puedes entrar en el **VIP 3**.\n\n' +
             'Solicita aquí abajo 👇 entrar al **VIP 3** y tener acceso a **Beneficios Secretos**.',
         botonLabel: 'Solicitar acceso al VIP 3',
         confirmacion:
